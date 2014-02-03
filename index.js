@@ -344,7 +344,8 @@ RedisSentinelClient.prototype.getMaster = function getMaster() {
 RedisSentinelClient.prototype.log = function log() {
   var logger = this.options.logger || console;
   var args = Array.prototype.slice.call(arguments);
-  logger.log.apply(logger, args);
+  var method = args.shift();
+  logger[method](args);
 };
 // debug(msgs...)
 RedisSentinelClient.prototype.debug = function debug() {
